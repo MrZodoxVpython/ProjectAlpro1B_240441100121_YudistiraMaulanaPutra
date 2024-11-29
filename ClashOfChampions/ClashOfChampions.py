@@ -108,12 +108,15 @@ def pengaturanQuiz():
             kategori = input("\nIngin menambahkan quiz ke kategori apa?: ")
             pertanyaan = input("Tambahkan pertanyaan: ")
             jawaban = input("Tambahkan jawaban: ")
-            if kategori == "IPA" or kategori == "Matematika" or kategori == "Agama" or kategori == "Bahasa":
-                dataQuiz[kategori][pertanyaan] = jawaban
-                print(f"\n--=Warning=-> Berhasil menambahkan pertanyaan dan jawaban kedalam kategori: {kategori}")
-                pengaturanQuiz() 
-            else:
-                print("\n--=Warning=-> Input gak Valid")
+            if kategori in dataQuiz:
+                if kategori == "IPA" or kategori == "Matematika" or kategori == "Agama" or kategori == "Bahasa":
+                    dataQuiz[kategori][pertanyaan] = jawaban
+                    print(f"\n--=Warning=-> Berhasil menambahkan pertanyaan dan jawaban kedalam kategori: {kategori}")
+                    pengaturanQuiz() 
+                else:   
+                    print("\n--=Warning=-> Input gak valid")
+            else:      
+                print(f"\n--=Warning=-> Tidak ada {kategori} didalam data.")
         if pQ == "2":
             readQuiz()
         if pQ == "3": 
