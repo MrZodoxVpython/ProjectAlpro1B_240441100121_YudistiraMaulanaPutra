@@ -106,9 +106,9 @@ def pengaturanQuiz():
         if pQ == "1":  
             readQuiz()
             kategori = input("\nIngin menambahkan quiz ke kategori apa?: ")
-            pertanyaan = input("Tambahkan pertanyaan: ")
-            jawaban = input("Tambahkan jawaban: ")
             if kategori in dataQuiz:
+                pertanyaan = input("Tambahkan pertanyaan: ")
+                jawaban = input("Tambahkan jawaban: ")
                 if kategori == "IPA" or kategori == "Matematika" or kategori == "Agama" or kategori == "Bahasa":
                     dataQuiz[kategori][pertanyaan] = jawaban
                     print(f"\n--=Warning=-> Berhasil menambahkan pertanyaan dan jawaban kedalam kategori: {kategori}")
