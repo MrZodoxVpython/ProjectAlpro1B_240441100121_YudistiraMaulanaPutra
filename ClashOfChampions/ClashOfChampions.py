@@ -284,4 +284,4 @@ def menuDashboard():
         else:
             print("\n--=Warning=-> Masukkan (1/2)!\n")
 
-menuAdmin()
+menuDashboard()
