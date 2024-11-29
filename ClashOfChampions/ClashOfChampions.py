@@ -169,13 +169,19 @@ def perbaruiPengguna():
         if usernameOrPassword == "username":
             userLama = input(f"Masukkan username '{userOrAdmin}' yang ingin diperbarui: ")
             userBaru = input("Ingin diubah ke apa?: ")
-            dataCredential[userOrAdmin][userBaru] = dataCredential[userOrAdmin].pop(userLama)
-            print(f"\nCredential {userOrAdmin} dengan username '{userLama}' berhasil diperbarui menjadi '{userBaru}'")
+            if userLama in dataCredential[userOrAdmin]:
+                dataCredential[userOrAdmin][userBaru] = dataCredential[userOrAdmin].pop(userLama)
+                print(f"\nCredential {userOrAdmin} dengan username '{userLama}' berhasil diperbarui menjadi '{userBaru}'")
+            else:
+                print(f"\n--=Warning=-> Username '{userLama}' tidak ada di data {userOrAdmin}!")
         elif usernameOrPassword == "password":
             pwLama = input(f"Masukkan password '{userOrAdmin}' yang ingin diperbarui: ")
             pwBaru = input("Ingin diubah ke apa?: ")
-            dataCredential[userOrAdmin][pwBaru] = pwLama
-            print(f"\nCredential '{userOrAdmin}' dengan password '{pwLama}' berhasil diperbarui menjadi '{pwBaru}'")
+            if pwLama in dataCredential[userOrAdmin]:
+                dataCredential[userOrAdmin][pwBaru] = pwLama
+                print(f"\nCredential '{userOrAdmin}' dengan password '{pwLama}' berhasil diperbarui menjadi '{pwBaru}'")
+            else:
+                print(f"\n--=Warning=-> Password '{pwLama}' tidak ada di data {userOrAdmin}!")
         else:
             print("\n--=Warning=-> Terdeteksi typo.")
     else:
@@ -185,14 +191,16 @@ def hapusPengguna():
     while True:
         lihatPengguna()
         userOrAdmin = input("Ingin menghapus credential 'user' atau 'admin'?: ")
-        dilit = input(f"Masukkan username '{userOrAdmin}' yang ingin dihapus: ")
-        if dilit in dataCredential[userOrAdmin]:
-            del dataCredential[userOrAdmin][dilit]
-            print(f"\n --=Warning=-> Credential {userOrAdmin} dengan username {dilit} berhasil dihapus.")
-            break
-        else: 
-            print("--=Warning-=> Inpot tidak valid.")
-            hapusPengguna()
+        if userOrAdmin in dataCredential:
+            dilit = input(f"Masukkan username '{userOrAdmin}' yang ingin dihapus: ")
+            if dilit in dataCredential[userOrAdmin]:
+                del dataCredential[userOrAdmin][dilit]
+                print(f"\n --=Warning=-> Credential {userOrAdmin} dengan username {dilit} berhasil dihapus.")
+                menuAdmin()
+                break
+            else: 
+                print("\n--=Warning-=> Inpot tidak valid.")
+                hapusPengguna()
 
 def menuAdmin():
     while True:
