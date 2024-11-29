@@ -110,35 +110,41 @@ def pengaturanQuiz():
             jawaban = input("Tambahkan jawaban: ")
             if kategori == "IPA" or kategori == "Matematika" or kategori == "Agama" or kategori == "Bahasa":
                 dataQuiz[kategori][pertanyaan] = jawaban
-                print(f"--=Warning=-> Berhasil menambahkan pertanyaan dan jawaban kedalam kategori: {kategori}")
+                print(f"\n--=Warning=-> Berhasil menambahkan pertanyaan dan jawaban kedalam kategori: {kategori}")
                 pengaturanQuiz() 
             else:
-                print("Not Valid")
+                print("\n--=Warning=-> Input gak Valid")
         if pQ == "2":
             readQuiz()
         if pQ == "3": 
-            kategori = input("Masukkan kategori yang ingin diperbarui (IPA, Matematika, Agama, Bahasa): ")
+            kategori = input("\nMasukkan kategori yang ingin diperbarui (IPA, Matematika, Agama, Bahasa): ")
             if kategori in dataQuiz:
                 pertanyaanList = list(dataQuiz[kategori].keys()) 
                 for index, pertanyaan in enumerate(pertanyaanList, 1):
                     print(f"{index}. {pertanyaan}") 
-                pilihan = int(input("\nPilih nomor pertanyaan yang ingin diubah: "))
-                if 1 <= pilihan <= len(pertanyaanList):
-                    pertanyaanLama = pertanyaanList[pilihan - 1]
-                
-                pertanyaanBaru = input(f"Masukkan pertanyaan baru untuk menggantikan '{pertanyaanLama}': ")
-                jawabanBaru = input("Masukkan jawaban baru: ")
-                dataQuiz[kategori][pertanyaanBaru] = dataQuiz[kategori].pop(pertanyaanLama)
-                dataQuiz[kategori][pertanyaanBaru] = jawabanBaru
-                print("\n--=Warning=-> Pertanyaan dan jawaban berhasil diperbarui.")
-                pengaturanQuiz()
+                pilihan = input("\nPilih nomor pertanyaan yang ingin diubah: ")
+                if pilihan.isdigit():
+                    pilihan = int(pilihan)
+                    if 1 <= pilihan <= len(pertanyaanList):
+                        pertanyaanLama = pertanyaanList[pilihan - 1]
+                        pertanyaanBaru = input(f"Masukkan pertanyaan baru untuk menggantikan '{pertanyaanLama}': ")
+                        jawabanBaru = input("Masukkan jawaban baru: ")
+                        dataQuiz[kategori][pertanyaanBaru] = dataQuiz[kategori].pop(pertanyaanLama)
+                        dataQuiz[kategori][pertanyaanBaru] = jawabanBaru
+                        print("\n--=Warning=-> Pertanyaan dan jawaban berhasil diperbarui.")
+                        pengaturanQuiz()
+                else:
+                    print("\n--=Warning=-> Masukkan angka (1/2/3..)")
             else:
-                print("\n--=Warning=-> Pilihan tidak valid.")
+                print(f"\n--=Warning=-> Kategori {kategori} tidak ada dalam data.")
         if pQ == "4":
             readQuiz()
             kategori = input("Masukkan kategori Quiz yang ingin dihapus: ")
-            del dataQuiz[kategori]
-            print(f"\n--=Warning=-> Kategori {kategori} berhasil dihapus.")
+            if kategori in dataQuiz:
+                del dataQuiz[kategori]
+                print(f"\n--=Warning=-> Kategori '{kategori}' berhasil dihapus.")
+            else:
+                print(f"\n--=Warning=-> Kategori '{kategori}' tidak ada dalam data.")
         if pQ == "5":
             exit()
 
