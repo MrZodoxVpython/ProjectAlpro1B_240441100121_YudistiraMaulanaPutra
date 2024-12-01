@@ -128,7 +128,7 @@ def pengaturanQuiz():
                 pilihan = input("\nPilih nomor pertanyaan yang ingin diubah: ")
                 if pilihan.isdigit():
                     pilihan = int(pilihan)
-                    if pilihan >= 1 and pilihan <= len(pertanyaanList):
+                    if 1 <= pilihan <= len(pertanyaanList):
                         pertanyaanLama = pertanyaanList[pilihan - 1]
                         pertanyaanBaru = input(f"Masukkan pertanyaan baru untuk menggantikan '{pertanyaanLama}': ")
                         jawabanBaru = input("Masukkan jawaban baru: ")
@@ -193,7 +193,7 @@ def perbaruiPengguna():
             pwLama = input(f"Masukkan password '{userOrAdmin}' yang ingin diperbarui: ")
             pwBaru = input("Ingin diubah ke apa?: ")
             if pwLama in dataCredential[userOrAdmin]:
-                dataCredential[userOrAdmin][pwBaru] = pwLama
+                dataCredential[userOrAdmin][pwLama] = pwBaru
                 print(f"\nCredential '{userOrAdmin}' dengan password '{pwLama}' berhasil diperbarui menjadi '{pwBaru}'")
             else:
                 print(f"\n--=Warning=-> Password '{pwLama}' tidak ada di data {userOrAdmin}!")
