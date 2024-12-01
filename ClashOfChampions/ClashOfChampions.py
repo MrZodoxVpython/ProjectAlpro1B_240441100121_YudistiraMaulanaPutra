@@ -147,6 +147,7 @@ def pengaturanQuiz():
         if pQ == "4":
             readQuiz()
             kategori = input("Masukkan kategori Quiz yang ingin dihapus: ")
+            kategori = kategori.capitalize()
             if kategori in dataQuiz:
                 del dataQuiz[kategori]
                 print(f"\n--=Warning=-> Kategori '{kategori}' berhasil dihapus.")
@@ -180,11 +181,11 @@ def menuUser():
 
 def perbaruiPengguna():
     lihatPengguna()
-    userOrAdmin = input("\nPerbarui credential 'user' atau 'admin'?: ")
+    userOrAdmin = input("\nPerbarui credential 'user' atau 'admin'?: ").lower
     if userOrAdmin == "user" or userOrAdmin == "admin":
-        usernameOrPassword = input(f"Perbarui 'username' atau 'password'?: ") 
+        usernameOrPassword = input(f"Perbarui 'username' atau 'password'?: ").lower
         if usernameOrPassword == "username":
-            userLama = input(f"Masukkan username '{userOrAdmin}' yang ingin diperbarui: ")
+            userLama = input(f"Masukkan username '{userOrAdmin}' yang ingin diperbarui: ").lower
             userBaru = input("Ingin diubah ke apa?: ")
             if userLama in dataCredential[userOrAdmin]:
                 dataCredential[userOrAdmin][userBaru] = dataCredential[userOrAdmin].pop(userLama)
@@ -192,7 +193,7 @@ def perbaruiPengguna():
             else:
                 print(f"\n--=Warning=-> Username '{userLama}' tidak ada di data {userOrAdmin}!")
         elif usernameOrPassword == "password":
-            pwLama = input(f"Masukkan password '{userOrAdmin}' yang ingin diperbarui: ")
+            pwLama = input(f"Masukkan password '{userOrAdmin}' yang ingin diperbarui: ").lower
             pwBaru = input("Ingin diubah ke apa?: ")
             if pwLama in dataCredential[userOrAdmin]:
                 dataCredential[userOrAdmin][pwLama] = pwBaru
@@ -207,9 +208,9 @@ def perbaruiPengguna():
 def hapusPengguna():
     while True:
         lihatPengguna()
-        userOrAdmin = input("Ingin menghapus credential 'user' atau 'admin'?: ")
+        userOrAdmin = input("Ingin menghapus credential 'user' atau 'admin'?: ").lower()
         if userOrAdmin in dataCredential:
-            dilit = input(f"Masukkan username '{userOrAdmin}' yang ingin dihapus: ")
+            dilit = input(f"Masukkan username '{userOrAdmin}' yang ingin dihapus: ").lower
             if dilit in dataCredential[userOrAdmin]:
                 del dataCredential[userOrAdmin][dilit]
                 print(f"\n --=Warning=-> Credential {userOrAdmin} dengan username '{dilit}' berhasil dihapus.")
