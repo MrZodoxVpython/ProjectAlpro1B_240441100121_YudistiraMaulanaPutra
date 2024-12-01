@@ -109,7 +109,7 @@ def pengaturanQuiz():
             if kategori in dataQuiz:
                 pertanyaan = input("Tambahkan pertanyaan: ")
                 jawaban = input("Tambahkan jawaban: ")
-                if kategori == "IPA" or kategori == "Matematika" or kategori == "Agama" or kategori == "Bahasa":
+                if kategori == "Ipa" or kategori == "Matematika" or kategori == "Agama" or kategori == "Bahasa":
                     dataQuiz[kategori][pertanyaan] = jawaban
                     print(f"\n--=Warning=-> Berhasil menambahkan pertanyaan dan jawaban kedalam kategori: {kategori}")
                     pengaturanQuiz() 
@@ -120,7 +120,7 @@ def pengaturanQuiz():
         if pQ == "2":
             readQuiz()
         if pQ == "3": 
-            kategori = input("\nMasukkan kategori yang ingin diperbarui (IPA, Matematika, Agama, Bahasa): ")
+            kategori = input("\nMasukkan kategori yang ingin diperbarui (Ipa, Matematika, Agama, Bahasa): ")
             if kategori in dataQuiz:
                 pertanyaanList = list(dataQuiz[kategori].keys()) 
                 for index, pertanyaan in enumerate(pertanyaanList, 1):
@@ -128,7 +128,7 @@ def pengaturanQuiz():
                 pilihan = input("\nPilih nomor pertanyaan yang ingin diubah: ")
                 if pilihan.isdigit():
                     pilihan = int(pilihan)
-                    if 1 <= pilihan <= len(pertanyaanList):
+                    if pilihan >= 1 and pilihan <= len(pertanyaanList):
                         pertanyaanLama = pertanyaanList[pilihan - 1]
                         pertanyaanBaru = input(f"Masukkan pertanyaan baru untuk menggantikan '{pertanyaanLama}': ")
                         jawabanBaru = input("Masukkan jawaban baru: ")
@@ -136,6 +136,8 @@ def pengaturanQuiz():
                         dataQuiz[kategori][pertanyaanBaru] = jawabanBaru
                         print("\n--=Warning=-> Pertanyaan dan jawaban berhasil diperbarui.")
                         pengaturanQuiz()
+                    else:
+                        print("\n--=Warning=-> Angka not valid")
                 else:
                     print("\n--=Warning=-> Masukkan angka (1/2/3..)")
             else:
