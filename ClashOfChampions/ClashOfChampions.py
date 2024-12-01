@@ -7,7 +7,7 @@ dataCredential = {
     }
 }
 dataQuiz = {
-    "IPA": {
+    "Ipa": {
         "Apa fungsi klorofil pada tumbuhan?": "fotosintesis",
         "Apa simbol kimia dari air?": "H2O"
     },
@@ -155,7 +155,7 @@ def menuUser():
     while True:
         print("\n=== WELCOME TO CLASH OF CHAMPIONS ===") 
         print("Daftar Quiz Tersedia:")
-        print("1. Quiz IPA")
+        print("1. Quiz Ipa")
         print("2. Quiz Matematika")
         print("3. Quiz Agama")
         print("4. Quiz Bahasa")
