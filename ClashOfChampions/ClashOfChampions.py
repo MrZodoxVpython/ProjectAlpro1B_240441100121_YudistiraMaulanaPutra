@@ -122,6 +122,7 @@ def pengaturanQuiz():
             readQuiz()
         if pQ == "3": 
             kategori = input("\nMasukkan kategori yang ingin diperbarui (Ipa, Matematika, Agama, Bahasa): ")
+            kategori = kategori.capitalize()
             if kategori in dataQuiz:
                 pertanyaanList = list(dataQuiz[kategori].keys()) 
                 for index, pertanyaan in enumerate(pertanyaanList, 1):
